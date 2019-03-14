@@ -20,10 +20,20 @@ pipeline {
       steps {
         sh 'mvn test'
       }
+       post{
+        always{
+          junit '**/surefire-reports/**/*.xml'
+        }
+      }
     }
     stage('package') {
-      steps {
+      st8eps {
         sh 'mvn package'
+      }
+      post{
+        success{
+          archiveArtifacts 'target/*.hpi,target/*jpi,target/*.jar'
+        }
       }
     }
   }
