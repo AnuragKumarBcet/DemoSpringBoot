@@ -10,6 +10,11 @@ pipeline {
       steps {
         sh 'mvn clean'
       }
+      post{
+        success{
+          archiveArtifacts 'target/*.hpi target/*.jpi target/*.jar'
+        }
+      }
     }
     stage('Compile') {
       steps {
