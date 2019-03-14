@@ -17,23 +17,27 @@ pipeline {
       }
     }
     stage('test') {
+      post {
+        always {
+          junit '**/surefire-reports/**/*.xml'
+
+        }
+
+      }
       steps {
         sh 'mvn test'
       }
-       post{
-        always{
-          junit '**/surefire-reports/**/*.xml'
-        }
-      }
     }
     stage('package') {
+      post {
+        success {
+          archiveArtifacts 'target/*.hpi,target/*jpi,target/*.jar'
+
+        }
+
+      }
       steps {
         sh 'mvn package'
-      }
-      post{
-        success{
-          archiveArtifacts 'target/*.hpi,target/*jpi,target/*.jar'
-        }
       }
     }
   }
