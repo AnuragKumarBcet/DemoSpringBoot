@@ -14,6 +14,9 @@ pipeline {
         success{
           archiveArtifacts 'target/*.hpi target/*.jpi target/*.jar'
         }
+        always{
+          junit '**/surefire-reports/**/*.xml'
+        }
       }
     }
     stage('Compile') {
