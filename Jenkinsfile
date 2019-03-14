@@ -27,7 +27,7 @@ pipeline {
       }
     }
     stage('package') {
-      st8eps {
+      steps {
         sh 'mvn package'
       }
       post{
