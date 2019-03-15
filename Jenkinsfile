@@ -30,9 +30,7 @@ pipeline {
     }
     stage('Static code Analysis'){
       steps{
-       sh mvn sonar:sonar \
-          -Dsonar.host.url=http://localhost:9000 \
-          -Dsonar.login=463bfe9ab73a6180d75fe5c97fa45dff62ed2f8a
+       sh mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=463bfe9ab73a6180d75fe5c97fa45dff62ed2f8a
       }
     }
     stage('package') {
